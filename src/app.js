@@ -3,22 +3,23 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors')
 
 
-const usersApiRouter = require('./routes/users');
+const tasksApiRouter = require('./routes/tasks');
 
 const app = express();
 
 // view engine setup
 
-
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/users', usersApiRouter);
+app.use('/api/tasks', tasksApiRouter);
 
 // catch 404 and forward to error handler
 
